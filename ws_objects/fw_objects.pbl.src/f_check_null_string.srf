@@ -1,0 +1,15 @@
+﻿$PBExportHeader$f_check_null_string.srf
+global type f_check_null_string from function_object
+end type
+
+forward prototypes
+global function string f_check_null_string (string as_data)
+end prototypes
+
+global function string f_check_null_string (string as_data);if isnull( as_data) then
+	return ""
+else
+	return trim(as_data)
+end if
+end function
+

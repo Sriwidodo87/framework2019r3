@@ -1,0 +1,102 @@
+﻿$PBExportHeader$f_update_menu.srf
+global type f_update_menu from function_object
+end type
+
+forward prototypes
+global subroutine f_update_menu (menu am_main)
+end prototypes
+
+global subroutine f_update_menu (menu am_main);integer &
+	li_max_row, li_level_1, li_level_2, li_level_3, li_level_4, li_level_5, &
+	li_menu_sort, li_level
+string &
+	ls_menu_id, ls_menu_desc, ls_parent, ls_tmp_parent
+long &
+	ll_test, ll_pos
+date &
+	ld_create_date
+menu &
+	lm_menu_lvl1, lm_menu_lvl2, lm_menu_lvl3, lm_menu_lvl4, lm_menu_lvl5
+
+delete from sysmenu;
+commit;
+
+// menu level 1
+li_level_1 = 1
+li_menu_sort = 0
+do while upperbound( am_main.item) >= li_level_1
+	lm_menu_lvl1 = am_main.item[ li_level_1]
+	ls_menu_id = lm_menu_lvl1.classname()
+	li_menu_sort ++
+	if lm_menu_lvl1.tag <> "1" then
+		f_insert_menu( ls_menu_id, lm_menu_lvl1.text, li_menu_sort, 1)
+	end if
+		
+	if upperbound( lm_menu_lvl1.item) > 0 then
+		// menu level 2
+		li_level_2 = 1
+		do while upperbound( lm_menu_lvl1.item) >= li_level_2
+			lm_menu_lvl2 = lm_menu_lvl1.item[ li_level_2]
+			ls_menu_id = lm_menu_lvl2.classname()
+			li_menu_sort ++
+			if lm_menu_lvl2.tag <> "1" then
+				f_insert_menu( ls_menu_id, lm_menu_lvl2.text, li_menu_sort, 2)
+			end if
+			
+			if upperbound( lm_menu_lvl2.item) > 0 then
+				// menu level 3
+				li_level_3 = 1
+				do while upperbound( lm_menu_lvl2.item) >= li_level_3
+					lm_menu_lvl3 = lm_menu_lvl2.item[ li_level_3]
+					ls_menu_id = lm_menu_lvl3.classname()
+					li_menu_sort ++
+					if lm_menu_lvl3.tag <> "1" then
+						f_insert_menu( ls_menu_id, lm_menu_lvl3.text, li_menu_sort, 3)
+					end if
+
+					if upperbound( lm_menu_lvl3.item) > 0 then
+						// menu level 4
+						li_level_4 = 1
+						do while upperbound( lm_menu_lvl3.item) >= li_level_4
+							lm_menu_lvl4 = lm_menu_lvl3.item[ li_level_4]
+							ls_menu_id = lm_menu_lvl4.classname()
+							li_menu_sort ++
+							if lm_menu_lvl4.tag <> "1" then
+								f_insert_menu( ls_menu_id, lm_menu_lvl4.text, li_menu_sort, 4)
+							end if
+							
+							if upperbound( lm_menu_lvl4.item) > 0 then
+								// menu level 5
+								li_level_5 = 1
+								do while upperbound( lm_menu_lvl4.item) >= li_level_5
+									lm_menu_lvl5 = lm_menu_lvl4.item[ li_level_5]
+									ls_menu_id = lm_menu_lvl5.classname()
+									li_menu_sort ++
+									if lm_menu_lvl5.tag <> "1" then
+										f_insert_menu( ls_menu_id, lm_menu_lvl5.text, li_menu_sort, 5)
+									end if
+									li_level_5 ++
+								loop
+							end if
+							li_level_4 ++
+						loop
+					end if
+					li_level_3 ++
+				loop		
+			end if
+			li_level_2 ++
+		loop	
+	end if
+	li_level_1 ++	
+loop
+commit;
+// clean up unused menu in group detail
+delete from sysgroupdet where menu_id not in ( select menu_id from sysmenu);
+commit;
+messagebox( "Update Menu", "Menu Updated")
+
+
+
+
+end subroutine
+

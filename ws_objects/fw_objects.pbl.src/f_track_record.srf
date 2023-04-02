@@ -1,0 +1,33 @@
+﻿$PBExportHeader$f_track_record.srf
+global type f_track_record from function_object
+end type
+
+forward prototypes
+global subroutine f_track_record (datawindow adw_master, date ad_track_date, string as_userid)
+end prototypes
+
+global subroutine f_track_record (datawindow adw_master, date ad_track_date, string as_userid);long &
+	ll_currow
+dwitemstatus &
+	ldwi_status
+	
+ll_currow = adw_master.getrow()
+ldwi_status = adw_master.getitemstatus( ll_currow, 0, primary!)
+
+choose case ldwi_status
+	case newmodified!, new!
+		adw_master.setitem( ll_currow, "create_by", &
+			as_userid)
+		adw_master.setitem( ll_currow, "create_date", &
+			ad_track_date)
+		
+	case datamodified!
+		adw_master.setitem( ll_currow, "update_by", &
+			as_userid)
+		adw_master.setitem( ll_currow, "update_date", &
+			ad_track_date)
+end choose 
+
+
+end subroutine
+

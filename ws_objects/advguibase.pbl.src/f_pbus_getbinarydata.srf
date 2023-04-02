@@ -1,0 +1,13 @@
+﻿$PBExportHeader$f_pbus_getbinarydata.srf
+global type f_pbus_getbinarydata from function_object
+end type
+
+forward prototypes
+global function blob f_pbus_getbinarydata (string a_identifier, string a_primarykey)
+end prototypes
+
+global function blob f_pbus_getbinarydata (string a_identifier, string a_primarykey);
+Blob lb
+RETURN lb
+end function
+

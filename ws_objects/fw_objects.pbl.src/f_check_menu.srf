@@ -1,0 +1,22 @@
+﻿$PBExportHeader$f_check_menu.srf
+global type f_check_menu from function_object
+end type
+
+forward prototypes
+global function boolean f_check_menu (string as_userid, string as_menu_id)
+end prototypes
+
+global function boolean f_check_menu (string as_userid, string as_menu_id);select sysgroupdet.menu_id into :as_menu_id 
+	from sysgroupdet, sysuser
+	where sysgroupdet.group_id = sysuser.group_id
+	and sysuser.user_id = :as_userid
+	and sysgroupdet.menu_id = :as_menu_id;
+
+if sqlca.sqlcode = 100 then
+	return false
+else
+	return true
+end if
+
+end function
+

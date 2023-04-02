@@ -1,0 +1,49 @@
+﻿$PBExportHeader$f_control_query_orig.srf
+global type f_control_query_orig from function_object
+end type
+
+forward prototypes
+global subroutine f_control_query_orig (datawindow adw_object, any astr_control_setting[])
+end prototypes
+
+global subroutine f_control_query_orig (datawindow adw_object, any astr_control_setting[]);/**********************************************************************
+Name
+	f_control_query_orig
+Type
+	Global Function
+Description	
+	change all fields control in data window to last state
+Argument	
+	dw_object ( datawindow)
+	astr_control_setting( structure), array structure contain control setting
+Return Value
+	none
+Usage
+	f_control_query_orig( dw_object, lstr_control_setting)
+************************************************************************/
+
+long &
+	n, ll_fields_count, ll_row
+string &
+	ls_test
+s_control_setting &
+	lstr_control_setting[]
+	
+lstr_control_setting = astr_control_setting
+
+ll_row = adw_object.getrow()
+
+ll_fields_count = long(adw_object.Describe("datawindow.Column.Count"))
+
+// change setting
+for n = 1 to ll_fields_count	
+	adw_object.modify( "#"+string( n)+".tabsequence=" + lstr_control_setting[n].taborder )
+	adw_object.modify( "#"+string( n)+".background.mode=" + lstr_control_setting[n].backmode)
+	adw_object.modify( "#"+string( n)+".background.color=" + lstr_control_setting[n].backcolor)	
+next
+
+adw_object.scrolltorow( ll_row)
+
+
+end subroutine
+

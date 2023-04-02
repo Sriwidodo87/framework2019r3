@@ -1,0 +1,17 @@
+[setting]
+development=yes
+userid=dba	
+password=12345
+[Database]
+DBMS="ODBC"
+Database=
+UserID=
+DBPass=
+LogID=
+LogPassword=
+Servername=
+DBParm="ConnectString='DRIVER={MySQL ODBC 5.2 ANSI Driver};DESC=;DATABASE=db_itmaintenance;SERVER=localhost;UID=root;PASSWORD=;PORT=3306;OPTION=3;STMT=;"
+Lock=
+AutoCommit=true
+
+

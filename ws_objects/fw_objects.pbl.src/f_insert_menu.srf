@@ -1,0 +1,29 @@
+﻿$PBExportHeader$f_insert_menu.srf
+global type f_insert_menu from function_object
+end type
+
+forward prototypes
+global subroutine f_insert_menu (string as_menu_id, string as_menu_desc, integer ai_menu_sort, integer ai_level)
+end prototypes
+
+global subroutine f_insert_menu (string as_menu_id, string as_menu_desc, integer ai_menu_sort, integer ai_level);long &
+	ll_pos
+
+ll_pos = pos( as_menu_desc, "&")
+if ll_pos > 0 then
+	as_menu_desc = replace( as_menu_desc, ll_pos, 1, "")
+end if
+	
+insert into sysmenu (
+	menu_id,
+	menu_desc,
+	menu_sort,
+	menu_level)
+values (
+	:as_menu_id,
+	:as_menu_desc,
+	:ai_menu_sort,
+	:ai_level );
+
+end subroutine
+

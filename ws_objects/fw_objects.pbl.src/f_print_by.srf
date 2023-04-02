@@ -1,0 +1,35 @@
+﻿$PBExportHeader$f_print_by.srf
+global type f_print_by from function_object
+end type
+
+forward prototypes
+global function string f_print_by (string as_user_id, datetime adt_print)
+end prototypes
+
+global function string f_print_by (string as_user_id, datetime adt_print);/**********************************************************************
+Name				
+	f_print_by
+Type
+	Global Function
+Description
+	format a print by value, used for report print id
+Argument
+	as_user_id ( string)
+	adt_print( datetime)
+Return Value
+	string, formatted print by
+Usage
+	string_variable = f_print_by( "samantha", ldt_datetime_var)
+************************************************************************/
+
+string &
+	ls_print_by
+
+as_user_id = trim( as_user_id)
+
+ls_print_by = as_user_id + "," &
+	+ string( adt_print, "dd-mm-yyyy hh:mm:ss")
+
+return ls_print_by
+end function
+

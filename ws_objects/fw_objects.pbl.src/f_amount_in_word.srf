@@ -1,0 +1,118 @@
+﻿$PBExportHeader$f_amount_in_word.srf
+global type f_amount_in_word from function_object
+end type
+
+forward prototypes
+global function string f_amount_in_word (double adbl_amount)
+end prototypes
+
+global function string f_amount_in_word (double adbl_amount);/**********************************************************************
+Name
+	f_amount_in_word
+Type
+	Global Function
+Description
+	write amount in word
+Argument
+	adbl_amount ( double)
+Return Value
+	String
+Usage
+	string_variable = f_amount_in_word( 20000000)
+************************************************************************/
+
+double &
+	ldbl_divisor, ldbl_large_amount, ldbl_tiny_amount, &
+	ldbl_dividen, ldbl_dummy
+string &
+	ls_word, ls_weight1, ls_weight2, ls_unit, ls_follower, &
+	ls_prefix[], ls_suffix[]
+				
+ls_prefix = { "SE", "DUA ", "TIGA ", "EMPAT ", "LIMA ", "ENAM ", "TUJUH ", &
+	"DELAPAN ", "SEMBILAN "}				
+ls_suffix = { "SATU ", "DUA ", "TIGA ", "EMPAT ", "LIMA ", "ENAM ", "TUJUH ", &
+	"DELAPAN ", "SEMBILAN "}	
+
+ls_word = ""
+ldbl_large_amount = abs( truncate( adbl_amount, 0))
+ldbl_tiny_amount = round( ( abs( adbl_amount) - ldbl_large_amount) * 100, 0)
+ldbl_divisor = 1000000000000
+
+if ldbl_large_amount > ldbl_divisor then
+	return "Out of Range"
+end if
+
+do while ldbl_divisor >= 1
+	ldbl_dividen = truncate( ldbl_large_amount / ldbl_divisor, 0)
+	ldbl_large_amount = mod( ldbl_large_amount, ldbl_divisor)
+	
+	ls_unit = ""
+	if ldbl_dividen > 0 then
+		choose case ldbl_divisor
+			case 1000000000000
+				ls_unit = "TRILYUN "
+			case 1000000000
+				ls_unit = "MILYAR "
+			case 1000000
+				ls_unit = "JUTA "
+			case 1000
+				ls_unit = "RIBU "
+		end choose
+	end if
+	
+	ls_weight1 = ""
+	ldbl_dummy = ldbl_dividen
+	if ldbl_dummy >= 100 then
+		ls_weight1 = ls_prefix[ truncate( ldbl_dummy / 100, 0)] + "RATUS "
+	end if
+	
+	ldbl_dummy = mod( ldbl_dividen, 100)
+	
+	choose case ldbl_dummy
+		case is < 10
+			if ldbl_dummy = 1 and ls_unit = "RIBU " then
+				ls_weight1 += "SE"
+			elseif ldbl_dummy > 0 then
+				ls_weight1 += ls_suffix[ ldbl_dummy]
+			end if
+		case 11 to 19
+			ls_weight1 += ls_prefix[ mod( ldbl_dummy, 10)] + "BELAS "
+		case else
+			ls_weight1 += ls_prefix[ truncate( ldbl_dummy / 10, 0)] + "PULUH "
+			if mod( ldbl_dummy, 10) > 0 then
+				ls_weight1 += ls_suffix[ mod( ldbl_dummy, 10)]
+			end if
+	end choose
+	
+	ls_word += ls_weight1 + ls_unit 
+	ldbl_divisor /= 1000
+loop 
+
+if truncate( adbl_amount, 0) = 0 then
+	ls_word = "NOL "
+end if
+
+ls_follower = ""
+choose case ldbl_tiny_amount
+	case is < 10 
+		if ldbl_tiny_amount > 0 then
+			ls_follower = "KOMA NOL " + ls_suffix[ ldbl_tiny_amount]
+		end if
+	case else
+		ls_follower = "KOMA " + ls_suffix[ truncate( ldbl_tiny_amount / 10, 0)]
+		if mod( ldbl_tiny_amount, 10) > 0 then 
+			ls_follower += ls_suffix[ mod( ldbl_tiny_amount, 10)]
+		end if
+end choose
+
+ls_word += ls_follower 
+
+if adbl_amount < 0 then 
+	ls_word = "MINUS " + ls_word
+end if
+
+return trim( ls_word)
+
+				
+end function
+

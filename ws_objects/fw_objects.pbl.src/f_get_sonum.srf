@@ -1,0 +1,41 @@
+﻿$PBExportHeader$f_get_sonum.srf
+global type f_get_sonum from function_object
+end type
+
+forward prototypes
+global function string f_get_sonum (string as_moducd, string as_settype)
+end prototypes
+
+global function string f_get_sonum (string as_moducd, string as_settype);decimal{6} &
+	ldc_numevl
+string &
+	ls_textvl, ls_prefix, ls_tranno
+integer &
+	li_len
+	
+as_moducd = trim( as_moducd)
+as_settype = trim( as_settype)
+
+select textvl, numevl 
+	into :ls_textvl, :ldc_numevl
+	from sysset
+	where moducd = :as_moducd
+		and settype = :as_settype;
+
+li_len = integer( left( ls_textvl, 1))
+ls_prefix = mid( ls_textvl,2,8)
+ls_tranno = string( ldc_numevl, "000000")
+ls_tranno = trim( ls_prefix) + right( ls_tranno, li_len)
+ldc_numevl ++
+
+update sysset 
+set numevl = :ldc_numevl 
+	where moducd = :as_moducd
+		and settype = :as_settype;
+commit;
+
+	
+return ls_tranno
+
+end function
+

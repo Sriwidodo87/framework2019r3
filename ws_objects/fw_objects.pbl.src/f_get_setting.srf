@@ -1,0 +1,33 @@
+﻿$PBExportHeader$f_get_setting.srf
+global type f_get_setting from function_object
+end type
+
+forward prototypes
+global function any f_get_setting (string as_moducd, string as_settype, boolean abl_ret_type)
+end prototypes
+
+global function any f_get_setting (string as_moducd, string as_settype, boolean abl_ret_type);any &
+	la_return
+string &
+	ls_data
+decimal{6} &
+	ldc_data
+
+if abl_ret_type then // text
+	select textvl into :ls_data
+		from sysset
+		where moducd = :as_moducd
+			and settype = :as_settype;
+	la_return = trim( ls_data)
+	return la_return
+else
+	select numevl into :ldc_data
+		from sysset
+		where moducd = :as_moducd
+			and settype = :as_settype;
+	la_return = ldc_data
+	return la_return
+end if
+			
+end function
+

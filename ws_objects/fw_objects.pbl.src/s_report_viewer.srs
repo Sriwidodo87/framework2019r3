@@ -1,0 +1,7 @@
+﻿$PBExportHeader$s_report_viewer.srs
+global type s_report_viewer from structure
+	blob		dwdata
+	string		title
+	string		modify
+end type
+

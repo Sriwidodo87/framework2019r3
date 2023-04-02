@@ -1,0 +1,112 @@
+﻿$PBExportHeader$f_disable_menu.srf
+global type f_disable_menu from function_object
+end type
+
+forward prototypes
+global subroutine f_disable_menu (menu am_main, string as_user_id)
+end prototypes
+
+global subroutine f_disable_menu (menu am_main, string as_user_id);/**********************************************************************
+Name
+	f_disable_menu
+Type
+	Global Function
+Description
+	disable certain menu to prevent unauthorized access
+Argument
+	am_main ( menu)
+	as_user_id ( string)
+Return Value
+	None
+Usage
+	f_disable_menu( m_main, "anton")
+Note
+	this function can only use with maximal 5 depth menu, to use more than
+	5 level you must modify this function again ( don't worry it isn't hard)
+************************************************************************/
+
+
+
+integer &
+	li_max_row, i, j, k, l, li_level_1, li_level_2, li_level_3, li_level_4, li_level_5
+string &
+	ls_menu_id
+long &
+	ll_test
+menu &
+	lm_menu_lvl1, lm_menu_lvl2, lm_menu_lvl3, lm_menu_lvl4, lm_menu_lvl5
+
+
+// menu level 1
+li_level_1 = 1
+do while upperbound( am_main.item) >= li_level_1
+	lm_menu_lvl1 = am_main.item[ li_level_1]
+	ls_menu_id = lm_menu_lvl1.classname()
+	if not f_check_menu( as_user_id, ls_menu_id) &
+		and lm_menu_lvl1.tag <> "1" then
+		lm_menu_lvl1.enabled = false
+	end if
+	
+	if upperbound( lm_menu_lvl1.item) > 0 then
+		// menu level 2
+		li_level_2 = 1
+		do while upperbound( lm_menu_lvl1.item) >= li_level_2
+			lm_menu_lvl2 = lm_menu_lvl1.item[ li_level_2]
+			ls_menu_id = lm_menu_lvl2.classname()
+			if not f_check_menu( as_user_id, ls_menu_id) &
+				and lm_menu_lvl2.tag <> "1" then
+				lm_menu_lvl2.enabled = false
+			end if
+			
+			if upperbound( lm_menu_lvl2.item)>0 then
+				// menu level 3
+				li_level_3 = 1
+				do while upperbound( lm_menu_lvl2.item) >= li_level_3
+					lm_menu_lvl3 = lm_menu_lvl2.item[ li_level_3]
+					ls_menu_id = lm_menu_lvl3.classname()
+					if not f_check_menu( as_user_id, ls_menu_id) &
+						and lm_menu_lvl3.tag <> "1" then
+						lm_menu_lvl3.enabled = false
+					end if
+
+					if upperbound( lm_menu_lvl3.item)>0 then
+						// menu level 4
+						li_level_4 = 1
+						do while upperbound( lm_menu_lvl3.item) >= li_level_4
+							lm_menu_lvl4 = lm_menu_lvl3.item[ li_level_4]
+							ls_menu_id = lm_menu_lvl4.classname()
+							if not f_check_menu( as_user_id, ls_menu_id) &
+								and lm_menu_lvl4.tag <> "1" then
+								lm_menu_lvl4.enabled = false
+							end if
+							if upperbound( lm_menu_lvl4.item)>0 then
+								// menu level 5
+								li_level_5 = 1
+								do while upperbound( lm_menu_lvl4.item) >= li_level_5
+									lm_menu_lvl5 = lm_menu_lvl4.item[ li_level_5]
+									ls_menu_id = lm_menu_lvl5.classname()
+									if not f_check_menu( as_user_id, ls_menu_id) &
+										and lm_menu_lvl5.tag <> "1" then
+										lm_menu_lvl5.enabled = false
+									end if
+									li_level_5 ++
+								loop		
+							end if
+							li_level_4 ++
+						loop		
+					end if
+					li_level_3 ++
+				loop		
+			end if
+			li_level_2 ++
+		loop	
+	end if
+	li_level_1 ++	
+loop
+
+
+
+
+
+end subroutine
+

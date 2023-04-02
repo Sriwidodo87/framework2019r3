@@ -1,0 +1,15 @@
+﻿$PBExportHeader$f_check_null_number.srf
+global type f_check_null_number from function_object
+end type
+
+forward prototypes
+global function any f_check_null_number (any anum_data)
+end prototypes
+
+global function any f_check_null_number (any anum_data);if isnull( anum_data) then
+	return 0
+else
+	return anum_data
+end if
+end function
+

@@ -1,0 +1,18 @@
+﻿$PBExportHeader$f_set_window_pos.srf
+global type f_set_window_pos from function_object
+end type
+
+forward prototypes
+global subroutine f_set_window_pos (window aw_pos)
+end prototypes
+
+global subroutine f_set_window_pos (window aw_pos);
+environment lenv
+
+aw_pos.setredraw(false)
+getenvironment(lenv)
+aw_pos.move((pixelstounits(lenv.screenwidth, xpixelstounits!) - aw_pos.width)/2, &
+			  50)
+aw_pos.setredraw(true)
+end subroutine
+

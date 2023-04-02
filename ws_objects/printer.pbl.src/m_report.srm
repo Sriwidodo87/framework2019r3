@@ -1,0 +1,701 @@
+﻿$PBExportHeader$m_report.srm
+forward
+global type m_report from menu
+end type
+type m_display from menu within m_report
+end type
+type m_first from menu within m_display
+end type
+type m_prior from menu within m_display
+end type
+type m_next from menu within m_display
+end type
+type m_last from menu within m_display
+end type
+type m_2 from menu within m_display
+end type
+type m_normal from menu within m_display
+end type
+type m_zoomout from menu within m_display
+end type
+type m_zoomin from menu within m_display
+end type
+type m_0 from menu within m_display
+end type
+type m_rulers from menu within m_display
+end type
+type m_1 from menu within m_display
+end type
+type m_exit from menu within m_display
+end type
+type m_display from menu within m_report
+m_first m_first
+m_prior m_prior
+m_next m_next
+m_last m_last
+m_2 m_2
+m_normal m_normal
+m_zoomout m_zoomout
+m_zoomin m_zoomin
+m_0 m_0
+m_rulers m_rulers
+m_1 m_1
+m_exit m_exit
+end type
+type m_file from menu within m_report
+end type
+type m_setupprinter from menu within m_file
+end type
+type m_papersizeadnmargin from menu within m_file
+end type
+type m_print from menu within m_file
+end type
+type m_file from menu within m_report
+m_setupprinter m_setupprinter
+m_papersizeadnmargin m_papersizeadnmargin
+m_print m_print
+end type
+global type m_report from menu
+m_display m_display
+m_file m_file
+end type
+end forward
+
+global type m_report from menu
+m_display m_display
+m_file m_file
+end type
+global m_report m_report
+
+on m_report.create
+m_report=this
+call super::create
+this.text = "m_report"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217739
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217741
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_display=create m_display
+this.m_file=create m_file
+this.Item[UpperBound(this.Item)+1]=this.m_display
+this.Item[UpperBound(this.Item)+1]=this.m_file
+end on
+
+on m_report.destroy
+call super::destroy
+destroy(this.m_display)
+destroy(this.m_file)
+end on
+
+type m_display from menu within m_report
+m_first m_first
+m_prior m_prior
+m_next m_next
+m_last m_last
+m_2 m_2
+m_normal m_normal
+m_zoomout m_zoomout
+m_zoomin m_zoomin
+m_0 m_0
+m_rulers m_rulers
+m_1 m_1
+m_exit m_exit
+end type
+
+on m_display.create
+call super::create
+this.text = "Display"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217739
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217741
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_first=create m_first
+this.m_prior=create m_prior
+this.m_next=create m_next
+this.m_last=create m_last
+this.m_2=create m_2
+this.m_normal=create m_normal
+this.m_zoomout=create m_zoomout
+this.m_zoomin=create m_zoomin
+this.m_0=create m_0
+this.m_rulers=create m_rulers
+this.m_1=create m_1
+this.m_exit=create m_exit
+this.Item[UpperBound(this.Item)+1]=this.m_first
+this.Item[UpperBound(this.Item)+1]=this.m_prior
+this.Item[UpperBound(this.Item)+1]=this.m_next
+this.Item[UpperBound(this.Item)+1]=this.m_last
+this.Item[UpperBound(this.Item)+1]=this.m_2
+this.Item[UpperBound(this.Item)+1]=this.m_normal
+this.Item[UpperBound(this.Item)+1]=this.m_zoomout
+this.Item[UpperBound(this.Item)+1]=this.m_zoomin
+this.Item[UpperBound(this.Item)+1]=this.m_0
+this.Item[UpperBound(this.Item)+1]=this.m_rulers
+this.Item[UpperBound(this.Item)+1]=this.m_1
+this.Item[UpperBound(this.Item)+1]=this.m_exit
+end on
+
+on m_display.destroy
+call super::destroy
+destroy(this.m_first)
+destroy(this.m_prior)
+destroy(this.m_next)
+destroy(this.m_last)
+destroy(this.m_2)
+destroy(this.m_normal)
+destroy(this.m_zoomout)
+destroy(this.m_zoomin)
+destroy(this.m_0)
+destroy(this.m_rulers)
+destroy(this.m_1)
+destroy(this.m_exit)
+end on
+
+type m_first from menu within m_display
+end type
+
+on m_first.create
+call super::create
+this.text = "First~tF5"
+this.shortcut = 116
+this.toolbaritemname = "vcrfirst!"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217739
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217741
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_first.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent( "ue_first")
+end event
+
+type m_prior from menu within m_display
+end type
+
+on m_prior.create
+call super::create
+this.text = "Prior~tF6"
+this.shortcut = 117
+this.toolbaritemname = "vcrprior!"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217739
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217741
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_prior.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent( "ue_prior")
+end event
+
+type m_next from menu within m_display
+end type
+
+on m_next.create
+call super::create
+this.text = "Next~tF7"
+this.shortcut = 118
+this.toolbaritemname = "vcrnext!"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217739
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217741
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_next.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent( "ue_next")
+end event
+
+type m_last from menu within m_display
+end type
+
+on m_last.create
+call super::create
+this.text = "Last~tF8"
+this.shortcut = 119
+this.toolbaritemname = "vcrlast!"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217739
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217741
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_last.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent( "ue_last")
+end event
+
+type m_2 from menu within m_display
+end type
+
+on m_2.create
+call super::create
+this.text = "-"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217739
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217741
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_2.destroy
+call super::destroy
+end on
+
+type m_normal from menu within m_display
+end type
+
+on m_normal.create
+call super::create
+this.text = "Normal~tF10"
+this.shortcut = 121
+this.toolbaritemname = "justify!"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217739
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217741
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_normal.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent( "ue_normal")
+end event
+
+type m_zoomout from menu within m_display
+end type
+
+on m_zoomout.create
+call super::create
+this.text = "Zoom Out~tF11"
+this.shortcut = 122
+this.toolbaritemname = "browse!"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217739
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217741
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_zoomout.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent( "ue_zoomout")
+end event
+
+type m_zoomin from menu within m_display
+end type
+
+on m_zoomin.create
+call super::create
+this.text = "Zoom In ~tF12"
+this.shortcut = 123
+this.toolbaritemname = "search!"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217739
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217741
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_zoomin.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent( "ue_zoomin")
+end event
+
+type m_0 from menu within m_display
+end type
+
+on m_0.create
+call super::create
+this.text = "-"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217739
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217741
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_0.destroy
+call super::destroy
+end on
+
+type m_rulers from menu within m_display
+end type
+
+on m_rulers.create
+call super::create
+this.text = "Rulers~tR"
+this.shortcut = 82
+this.toolbaritemname = "designmode!"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217739
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217741
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_rulers.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent( "ue_rulers")
+end event
+
+type m_1 from menu within m_display
+end type
+
+on m_1.create
+call super::create
+this.text = "-"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217739
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217741
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_1.destroy
+call super::destroy
+end on
+
+type m_exit from menu within m_display
+end type
+
+on m_exit.create
+call super::create
+this.text = "Close~tCtrl+W"
+this.shortcut = 343
+this.toolbaritemname = "close!"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217739
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217741
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_exit.destroy
+call super::destroy
+end on
+
+event clicked;//parentwindow.triggerevent( "ue_close")
+close(parentwindow)
+end event
+
+type m_file from menu within m_report
+m_setupprinter m_setupprinter
+m_papersizeadnmargin m_papersizeadnmargin
+m_print m_print
+end type
+
+on m_file.create
+call super::create
+this.text = "File"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217739
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217741
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_setupprinter=create m_setupprinter
+this.m_papersizeadnmargin=create m_papersizeadnmargin
+this.m_print=create m_print
+this.Item[UpperBound(this.Item)+1]=this.m_setupprinter
+this.Item[UpperBound(this.Item)+1]=this.m_papersizeadnmargin
+this.Item[UpperBound(this.Item)+1]=this.m_print
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_setupprinter)
+destroy(this.m_papersizeadnmargin)
+destroy(this.m_print)
+end on
+
+type m_setupprinter from menu within m_file
+end type
+
+on m_setupprinter.create
+call super::create
+this.text = "Setup printer"
+this.toolbaritemname = "preferences!"
+this.toolbaritemspace = 5
+this.toolbaritemdown = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217739
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217741
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_setupprinter.destroy
+call super::destroy
+end on
+
+event clicked;if printsetup() = -1 then
+	messagebox("error!","Printer Setup Failled",exclamation!)
+end if 
+
+end event
+
+type m_papersizeadnmargin from menu within m_file
+end type
+
+on m_papersizeadnmargin.create
+call super::create
+this.text = "Paper size and  margin"
+this.toolbaritemname = "arrangetables!"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217739
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217741
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_papersizeadnmargin.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.triggerevent( "ue_paper")
+end event
+
+type m_print from menu within m_file
+end type
+
+event clicked;parentwindow.triggerevent( "ue_print")
+end event
+
+on m_print.create
+call super::create
+this.text = "Print~tCtrl+P"
+this.shortcut = 336
+this.toolbaritemname = "print!"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217739
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217741
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_print.destroy
+call super::destroy
+end on
+

@@ -1,0 +1,9 @@
+string  gs_userid,gs_password,gs_company_name, gs_company_code, &
+	gs_inifile = "appl.ini", gs_internalmarket, &
+	gs_frametitle, gs_version = ""
+datetime &
+	gdt_serverdatetime
+date &
+	gd_serverdate
+time &
+	gt_servertime

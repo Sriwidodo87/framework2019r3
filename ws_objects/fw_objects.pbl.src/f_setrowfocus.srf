@@ -1,0 +1,162 @@
+﻿$PBExportHeader$f_setrowfocus.srf
+global type f_setrowfocus from function_object
+end type
+
+forward prototypes
+global function boolean f_setrowfocus (datawindow adw, integer ai_rfi_cd)
+end prototypes
+
+global function boolean f_setrowfocus (datawindow adw, integer ai_rfi_cd);string ls_h, ls_err, ls_msg, ls_mod, ls_obj
+string ls_bg_colour //background color
+long ll_width //width of band
+
+ll_width = Long(adw.Object.DataWindow.HorizontalScrollMaximum)
+
+//ai_rfi_cd = Integer Code for type of SetRowFocusIndicator
+CHOOSE CASE ai_rfi_cd
+   CASE 0 //No RowFocusIndicator
+      adw.SetRowFocusIndicator(Off!)
+      //Destroy Previously created RowFocusIndicator Rectangle
+      //named "rf_rect"
+      ls_obj = adw.Object.DataWindow.Objects
+      if Pos(ls_obj, "rf_rect") > 0 then
+         ls_mod = "destroy rf_rect"
+         ls_err = adw.Modify(ls_mod)
+         if ls_err <> "" then 
+            ls_err = "Modify Error:" + ls_err
+            PopulateError(-1, ls_err)
+            goto lbl_err
+         end if
+      end if
+
+   CASE 1
+      adw.SetRowFocusIndicator(Hand!)
+
+   CASE 2
+      adw.SetRowFocusIndicator(FocusRect!) 
+
+   CASE 4 to 11
+      /*
+      CREATE COLORED BAND/RECTANGLE NAMED : rf_rect
+
+      It is preferable to define colors and other
+      constants in a global NVO. e.g.:
+         constant long LIGHT_YELLOW = RGB(255, 255, 200)
+
+      In case the NVO is named gc ("g" fot Global 
+      and "c" fot constants).   then one could 
+      substitute below:
+      ls_bg_colour = string(RGB(255, 255, 200))
+      by
+      ls_bg_colour = string(gc.LIGHT_YELLOW)
+*/
+
+      CHOOSE CASE ai_rfi_cd
+         CASE 4
+            ls_bg_colour = string(RGB(255, 255, 255)) //WHITE
+
+         CASE 5
+            ls_bg_colour = string(RGB(217, 217, 217)) //LIGHTER GRAY
+
+         CASE 6
+            ls_bg_colour = string(RGB(192, 192, 192)) //LIGHT GRAY
+
+         CASE 7
+            ls_bg_colour = string(RGB(255, 255, 200)) //LIGHT YELLOW
+
+         CASE 8
+            ls_bg_colour = string(RGB(255, 179, 217)) //LIGHT PINK
+
+         CASE 9
+            ls_bg_colour = string(RGB(140, 200, 200)) //LIGHT GREEN
+
+         CASE 10
+            ls_bg_colour = string(RGB(255, 211, 168)) //LIGHT ORANGE
+
+         CASE 11
+            ls_bg_colour = string(RGB(200, 255, 255)) //LIGHT BLUE
+
+      END CHOOSE
+      ll_width += adw.width
+
+
+//      " x='" + string(adw.X) + "'" +&
+      //Create Rectangle String
+      ls_mod = "Create Rectangle(band=detail" + &
+      " x='0'" +&
+      " y='0'" +&
+      " height='80~t if(1=1, RowHeight(), 80)'" +&
+      " width='" + string(ll_width) + "'" +&
+      " name=rf_rect " +&
+      " visible='1~t if(currentrow() = getrow(), 1, 0)'" +&
+      " brush.hatch='6'" + &
+      " brush.color='" + ls_bg_colour + "'" +&
+      " pen.style='0'" +&
+      " pen.width='5'" +&
+      " background.mode='2'" +&
+      " background.color='0'" +&
+      ")"
+
+   CASE 12 
+      if adw.VscrollBar then
+         ll_width += adw.width - 130
+      else
+         ll_width += adw.width - 20
+      end if
+      //create string for raised text rectangle named : rf_rect
+      ls_mod = "create text(band=Detail" +&
+      " color='0'" +&
+      " border='6'" +&
+      " x='" + string(adw.X + 10) + "'" +&
+      " y='0'" +&
+      " height='80~t if(1=1, RowHeight() - 5, 80)'" +&
+      " width='" + string(ll_width) + "'" +&
+      " text=''" +&
+      " name=rf_rect" +&
+      " visible='1~t if(currentrow() = getrow(), 1, 0)'" +&
+      " background.mode='2'" +&
+      " background.color='12632256'" +&
+      " )"
+
+   CASE ELSE
+      ls_err = "Illegal Option: " + String(ai_rfi_cd) + " !"
+      PopulateError(-1, ls_err)
+      goto lbl_err
+END CHOOSE
+
+CHOOSE CASE ai_rfi_cd
+   CASE 4 to 12
+      ls_err = adw.Modify(ls_mod)
+
+      if ls_err <> "" then 
+         ls_err = "Modify Error:" + ls_err
+         PopulateError(-1, ls_err)
+         goto lbl_err
+      end if
+
+
+      if adw.SetPosition("rf_rect", "detail", FALSE) <> 1 then 
+         ls_err = "SetPosition Error."
+         PopulateError(-1, ls_err)
+         goto lbl_err
+      end if 
+END CHOOSE
+
+return true
+
+//-------------------------------------------------------------------
+lbl_err:
+
+ls_msg = error.Text + ". " +&
+"Error/Msg No.=" + String(error.Number) + "; " +&
+"Window/Menu=" + error.WindowMenu + "; " +&
+"Object=" + error.Object + "; " +&
+"ObjectEvent=" + error.Object + "; " +&
+"Error Line No.=" + String(error.Line) + "."
+
+MessageBox("Message/Error", ls_msg, Exclamation!)
+
+return false
+
+end function
+

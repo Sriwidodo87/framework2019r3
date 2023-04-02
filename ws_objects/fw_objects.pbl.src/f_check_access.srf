@@ -1,0 +1,58 @@
+﻿$PBExportHeader$f_check_access.srf
+global type f_check_access from function_object
+end type
+
+forward prototypes
+global function boolean f_check_access (string as_menu_id, string as_userid, string as_access)
+end prototypes
+
+global function boolean f_check_access (string as_menu_id, string as_userid, string as_access);/**********************************************************************
+Name				
+	f_check_access
+Type				 
+	Global Function
+Description		 
+	check edit rights 
+Argument			 
+	as_appl_id ( string), application id
+	as_userid ( string), user id
+	as_access ( string), access rights, 
+		must in "group_add", "group_modify", "group_delete", "group_s1", "group_s2"
+Return Value	 
+	boolean, true if user have rights, otherwise return false
+Usage				 
+	boolean_variable = f_check_access( "appl0000", "pulan", "add")
+************************************************************************/
+boolean &
+	lb_access
+string &
+	ls_sql
+
+as_menu_id = trim( as_menu_id)
+as_userid = trim( as_userid)
+as_access = trim( lower( as_access))
+
+if as_userid = "dba" then
+	return true
+end if
+
+ls_sql =	"select " + as_access + " from sysgroupdet, sysuser " + &
+	"where sysuser.group_id = sysgroupdet.group_id " + &
+	"and sysuser.user_id = '" + as_userid + "' " + &
+	"and sysgroupdet.menu_id = '" + as_menu_id + "'";
+
+declare access_curs dynamic cursor for sqlsa;
+prepare sqlsa from :ls_sql;
+open dynamic access_curs;
+fetch access_curs into :lb_access;
+close access_curs;
+
+if lb_access = true then
+	return true
+else 
+	return false
+end if
+
+
+end function
+

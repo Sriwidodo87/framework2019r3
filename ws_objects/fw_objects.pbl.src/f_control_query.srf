@@ -1,0 +1,56 @@
+﻿$PBExportHeader$f_control_query.srf
+global type f_control_query from function_object
+end type
+
+forward prototypes
+global function any f_control_query (datawindow adw_object)
+end prototypes
+
+global function any f_control_query (datawindow adw_object);/**********************************************************************
+Name
+	f_control_query
+Type
+	Global Function
+Description	
+	change all fields control in data window, 
+	so user can query on all control in data window
+Argument	
+	dw_object ( datawindow)
+Return Value
+	any, array of structure ( s_control_setting) to save current setting ( before change made)
+Usage
+	lstr_control_setting = f_control_query( dw_object)
+Note 
+	this function return an array of s_control_setting,
+	structure s_control_setting must exist
+************************************************************************/
+
+long &
+	n, ll_fields_count, ll_row, ll_tab_seq
+s_control_setting &
+	lstr_control_setting[]
+
+ll_row = adw_object.getrow()
+
+ll_fields_count = long(adw_object.Describe("datawindow.Column.Count"))
+
+// save current column setting
+for n = 1 to ll_fields_count
+	lstr_control_setting[n].backcolor = adw_object.describe( "#"+string( n)+".background.color")
+	lstr_control_setting[n].taborder = adw_object.describe( "#"+string( n)+".tabsequence")
+	lstr_control_setting[n].backmode = adw_object.describe( "#"+string( n)+".background.mode")
+next
+
+// change setting
+for n = 1 to ll_fields_count
+	ll_tab_seq = n * 10
+	adw_object.modify( "#"+string( n)+".tabsequence=" + string( ll_tab_seq))
+	adw_object.modify( "#"+string( n)+".background.mode=0")
+	adw_object.modify( "#"+string( n)+".background.color=134217752")	
+next
+
+adw_object.scrolltorow( ll_row)
+
+return lstr_control_setting[]
+end function
+

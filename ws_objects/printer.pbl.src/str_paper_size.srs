@@ -1,0 +1,11 @@
+﻿$PBExportHeader$str_paper_size.srs
+global type str_paper_size from structure
+	integer		i_left
+	integer		i_right
+	integer		i_top
+	integer		i_bottom
+	integer		i_orientation
+	integer		i_size
+	integer		i_source
+end type
+

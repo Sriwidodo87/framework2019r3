@@ -1,0 +1,44 @@
+﻿$PBExportHeader$f_enable_fields.srf
+global type f_enable_fields from function_object
+end type
+
+forward prototypes
+global subroutine f_enable_fields (datawindow adw_object, boolean ab_enable)
+end prototypes
+
+global subroutine f_enable_fields (datawindow adw_object, boolean ab_enable);/**********************************************************************
+Name
+	f_enable_fields
+Type
+	Global Function
+Description	
+	enable / disable all fields in data window 
+Argument	
+	dw_object ( datawindow)
+	b_enable ( boolean), true to enable fields, false to disable fields
+Return Value
+	None
+Usage
+	f_enable_fields( dw_object, true) // enable all fields
+************************************************************************/
+
+long 		n, ll_fields_count, ll_row
+char 		lc_enable
+
+if ab_enable then
+	lc_enable = "0"
+else
+	lc_enable = "1"
+end if
+
+ll_row = adw_object.getrow()
+
+ll_fields_count = long(adw_object.Describe("datawindow.Column.Count"))
+for n = 1 to ll_fields_count
+	adw_object.modify( "#"+string( n)+".protect=" + lc_enable)
+next
+
+adw_object.scrolltorow( ll_row)
+
+end subroutine
+

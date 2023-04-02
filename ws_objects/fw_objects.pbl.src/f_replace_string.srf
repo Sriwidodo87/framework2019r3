@@ -1,0 +1,44 @@
+﻿$PBExportHeader$f_replace_string.srf
+global type f_replace_string from function_object
+end type
+
+forward prototypes
+global function string f_replace_string (string as_data, string as_find, string as_replace)
+end prototypes
+
+global function string f_replace_string (string as_data, string as_find, string as_replace);long &
+	ll_pos, ll_prevpos, ll_findlen
+
+as_data = trim( as_data)
+ll_pos = pos( as_data, as_find, 1)
+ll_findlen = len( as_find)
+
+if ll_pos = 0 then
+	return as_data
+else
+	ll_prevpos = 1
+	do while ll_pos <> 0 
+		ll_pos = pos( as_data, as_find, ll_prevpos)
+		if ll_prevpos > ll_pos then
+			exit
+			return as_data
+		end if
+		
+		if ll_pos <> 0 then
+			if ll_pos = 1 then
+				as_data = as_replace + &
+					mid( as_data, ll_pos + ll_findlen, len( as_data))
+				ll_prevpos = len( as_replace) + 1
+			else
+				as_data = mid( as_data, 1, ll_pos - 1) + &
+					as_replace + &
+					mid( as_data, ll_pos + ll_findlen, len( as_data))
+				ll_prevpos = len( mid( as_data, 1, ll_pos - 1)) + len( as_replace) + 1
+			end if
+		end if
+	loop
+	return as_data
+end if
+
+end function
+

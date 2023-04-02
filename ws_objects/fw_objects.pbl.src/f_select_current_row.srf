@@ -1,0 +1,39 @@
+﻿$PBExportHeader$f_select_current_row.srf
+global type f_select_current_row from function_object
+end type
+
+forward prototypes
+global function long f_select_current_row (datawindow adw_datawindow)
+end prototypes
+
+global function long f_select_current_row (datawindow adw_datawindow);	long     ll_currentrow
+	
+	
+	adw_datawindow.setredraw(false)
+	ll_currentrow = adw_datawindow.getrow()
+
+	adw_datawindow.selectrow(0,false)
+	adw_datawindow.selectrow(ll_currentrow,true)
+	adw_datawindow.setfocus()
+	adw_datawindow.setredraw(true)
+	Return ll_currentrow
+
+//long 	ll_currentrow
+//
+//
+//
+//
+////change redraw to avoid flicker
+//adw_datawindow.setredraw(false)
+//
+//ll_currentrow = adw_datawindow.GetRow()
+//
+//adw_datawindow.SelectRow(0,False)
+//adw_datawindow.SelectRow(ll_currentrow,True)
+//adw_datawindow.setfocus()
+//
+//adw_datawindow.setredraw(true)
+//
+//return ll_currentrow
+end function
+

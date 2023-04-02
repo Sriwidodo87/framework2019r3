@@ -1,0 +1,82 @@
+﻿$PBExportHeader$f_db_local_connect.srf
+global type f_db_local_connect from function_object
+end type
+
+forward prototypes
+global function transaction f_db_local_connect (string as_inifile, string as_db_name, string as_dbparm)
+end prototypes
+
+global function transaction f_db_local_connect (string as_inifile, string as_db_name, string as_dbparm);/**********************************************************************
+Name
+	f_db_connect
+Type
+	Global Function
+Description
+	connect to database using ini file
+Argument
+	as_inifile, .ini file name
+	as_db_name, database configuration setting
+	as_userid, user id to connect to database
+	as_password, password to connect to database
+Return Value
+	any, connection object
+Usage
+	connection_object = f_db_connect( "app.ini", "malang", "pulan", "juwita")
+************************************************************************/
+
+string &
+	ls_dbms, ls_database, ls_userid, ls_dbpass, ls_logid, & 
+	ls_logpassword, ls_servername, ls_dbparm, ls_lock, ls_autocommit
+boolean &
+	lb_autocommit
+transaction &
+	lcn_db
+
+lcn_db = create transaction
+as_inifile = trim( as_inifile)
+as_db_name = trim( as_db_name)
+
+// get string connection from ini file
+ls_dbms			= ProfileString ( as_inifile, as_db_name, "DBMS", "")
+ls_database		= ProfileString ( as_inifile, as_db_name, "Database", "")
+ls_logid			= ProfileString ( as_inifile, as_db_name, "LogID", "")
+ls_logpassword	= ProfileString ( as_inifile, as_db_name, "LogPassword", "")
+ls_servername	= ProfileString ( as_inifile, as_db_name, "Servername", "")
+ls_dbparm		= ProfileString ( as_inifile, as_db_name, "DBParm", "")
+ls_dbparm		= as_dbparm 
+ls_lock			= ProfileString ( as_inifile, as_db_name, "Lock", "")
+ls_autocommit	= ProfileString ( as_inifile, as_db_name, "Autocommit", "False")
+
+ls_autocommit = trim( lower( ls_autocommit))
+if ls_autocommit = "false" then
+	lb_autocommit = false
+else
+	lb_autocommit = true
+end if
+
+ls_userid		= ProfileString ( as_inifile, as_db_name, "UserID", "")
+ls_dbpass		= ProfileString ( as_inifile, as_db_name, "DBPass", "")
+
+ls_logid = ls_userid
+ls_logpassword = ls_dbpass
+
+// set connection
+lcn_db.DBMS				= ls_dbms
+lcn_db.Database		= ls_database
+lcn_db.UserID			= ls_userid
+lcn_db.DBPass			= ls_dbpass
+lcn_db.LogID			= ls_logid
+lcn_db.LogPass			= ls_logpassword
+lcn_db.ServerName		= ls_servername
+lcn_db.DBParm			= ls_dbparm
+lcn_db.Lock				= ls_lock
+lcn_db.autocommit		= lb_autocommit
+
+connect using lcn_db;
+If lcn_db.sqlcode <> 0 Then
+	MessageBox ("Cannot Connect to Database", lcn_db.SQLErrText )
+End If
+
+return lcn_db
+end function
+

@@ -1,0 +1,56 @@
+﻿$PBExportHeader$f_split_string.srf
+global type f_split_string from function_object
+end type
+
+forward prototypes
+global function any f_split_string (string as_string_to_split, character ac_delimiter)
+end prototypes
+
+global function any f_split_string (string as_string_to_split, character ac_delimiter);/**********************************************************************
+Name				
+	f_split_string
+Type
+	Global Function
+Description
+	split a string into an array, using delimiter
+Argument
+	as_string_to_split ( string)
+	ac_delimiter ( character), delimiter used to split
+Return Value
+	array, splited string
+Usage
+	array_variable = f_split_string( "abc;def;ghi", ";")
+************************************************************************/
+
+string &
+	ls_split_data[]
+long &
+	ll_string_length, i
+character &
+	lc_tmp
+integer &
+	li_index
+
+as_string_to_split = trim( as_string_to_split)
+ll_string_length = len( as_string_to_split)
+
+li_index = 1
+for i = 1 to ll_string_length
+	lc_tmp = mid( as_string_to_split, i, 1)
+	
+	if lc_tmp = ac_delimiter then
+		li_index ++
+		i ++
+		lc_tmp = mid( as_string_to_split, i, 1)
+		if lc_tmp = ac_delimiter then
+			lc_tmp = ""
+			i --
+		end if 
+	end if
+	
+	ls_split_data[ li_index] =  ls_split_data[ li_index] + lc_tmp
+next 
+
+return ls_split_data
+end function
+

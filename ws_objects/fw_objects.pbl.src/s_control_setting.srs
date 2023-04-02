@@ -1,0 +1,7 @@
+﻿$PBExportHeader$s_control_setting.srs
+global type s_control_setting from structure
+	string		backcolor
+	string		taborder
+	string		backmode
+end type
+

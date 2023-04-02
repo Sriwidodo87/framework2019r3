@@ -1,0 +1,22 @@
+﻿$PBExportHeader$s_reportviewer.srs
+global type s_reportviewer from structure
+	string		dwname
+	any		retr_arg
+	string		title
+	string		sql
+	string		filter
+	string		print_by
+	string		s1
+	string		s2
+	string		s3
+	string		s4
+	string		s5
+	string		s6
+	string		s7
+	string		s8
+	string		s9
+	string		s10
+	boolean		preview
+	string		modify
+end type
+
