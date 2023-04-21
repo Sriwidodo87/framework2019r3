@@ -278,7 +278,8 @@ if is_mode = "display" then
 	li_close_conf= messagebox( "Close " + this.title, "Are you sure?", &
 		exclamation!,yesno!)
 	if li_close_conf = 1 then
-		close( this)
+		//close(this)
+		w_main.uo_powerDock.of_closeactivedocument()
 	end if
 end if
 end event

@@ -13,7 +13,8 @@ end forward
 global variables
 string  gs_userid,gs_password,gs_company_name, gs_company_code, &
 	gs_inifile = "appl.ini", gs_internalmarket, &
-	gs_frametitle, gs_version = "" ,gs_color
+	gs_frametitle, gs_version = ""
+
 datetime &
 	gdt_serverdatetime
 date &
@@ -22,8 +23,7 @@ time &
 	gt_servertime
 	
 	
-	n_cst_powermessage gnv_message
-
+n_cst_powermessage gnv_message
 end variables
 
 global type framework_main from application
@@ -59,10 +59,8 @@ destroy(error)
 destroy(message)
 end on
 
-event open;f_pbus_set_global_theme("Violet_Light")
+event open;f_pbus_set_global_theme("violet_light")
 open(w_login)
-end event
 
-event close;f_pbus_set_global_theme(FALSE)
 end event
 

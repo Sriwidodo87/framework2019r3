@@ -23,7 +23,7 @@ end forward
 
 global type w_master_detail_1 from window
 integer width = 3735
-integer height = 2048
+integer height = 2208
 boolean titlebar = true
 string title = "Untitled"
 long backcolor = 67108864
@@ -219,7 +219,8 @@ if is_mode = "display" then
 	li_close_conf= messagebox( "Close " + this.title, "Are you sure?", &
 		exclamation!,yesno!)
 	if li_close_conf = 1 then
-		close( this)
+		//close( this)
+			w_main.uo_powerDock.of_closeactivedocument()
 	end if
 end if
 end event
@@ -650,8 +651,9 @@ end event
 
 event resize;//uo_buttons.move( 0,this.workspaceheight( ) - uo_buttons.height)
 dw_master.move( 0, 0)
-dw_detail.move( 0, dw_master.height+ 50 )
-dw_detail.height = this.workspaceheight( ) - (dw_master.height + uo_buttons.height + 100 )
+dw_detail.move( 0, dw_master.height)
+dw_detail.height = this.workspaceheight( ) - (dw_master.height + uo_dwnav.height)
+
 
 uo_buttons.x =this.workspacewidth( ) - uo_buttons.width
 uo_buttons.y =28
@@ -680,8 +682,8 @@ end event
 
 type uo_buttons from uo_std_buttons_picture within w_master_detail_1
 event destroy ( )
-integer x = 265
-integer y = 1240
+integer x = 2834
+integer y = 36
 integer taborder = 60
 end type
 

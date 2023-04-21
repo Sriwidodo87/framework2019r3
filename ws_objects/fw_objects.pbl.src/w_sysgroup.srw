@@ -233,6 +233,10 @@ if is_mode = "display" and ib_query = false then
 end if
 end event
 
+event resize;call super::resize;dw_access.move( 0, dw_master.height)
+dw_access.height = this.workspaceheight( ) - (dw_master.height + uo_dwnav.height)
+end event
+
 type uo_dwnav from w_master_detail_1`uo_dwnav within w_sysgroup
 integer x = 110
 integer y = 1860
@@ -369,8 +373,8 @@ end event
 
 type dw_access from datawindow within w_sysgroup
 boolean visible = false
-integer x = 55
-integer y = 304
+integer x = 1019
+integer y = 360
 integer width = 3337
 integer height = 1480
 integer taborder = 30

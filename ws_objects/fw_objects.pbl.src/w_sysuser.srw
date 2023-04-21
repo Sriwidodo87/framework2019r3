@@ -9,13 +9,13 @@ string tag = "m_admuser"
 integer width = 2670
 integer height = 1152
 string title = "User Maintenance"
-string icon = ""
 boolean center = false
 end type
 global w_sysuser w_sysuser
 
 forward prototypes
 public function string wf_delete ()
+public subroutine wf_pre_update ()
 end prototypes
 
 public function string wf_delete ();string &
@@ -27,6 +27,9 @@ delete from sysuser where user_id = :ls_user_id;
 commit;
 return "User id : " + ls_user_id + "deleted"
 end function
+
+public subroutine wf_pre_update ();dw_master.SetItem(1,'user_password',gf_simple_encode(dw_master.Object.user_password[1],'1'))
+end subroutine
 
 on w_sysuser.create
 int iCurrent

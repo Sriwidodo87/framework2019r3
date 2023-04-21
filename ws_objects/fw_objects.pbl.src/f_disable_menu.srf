@@ -45,6 +45,7 @@ do while upperbound( am_main.item) >= li_level_1
 	if not f_check_menu( as_user_id, ls_menu_id) &
 		and lm_menu_lvl1.tag <> "1" then
 		lm_menu_lvl1.enabled = false
+		lm_menu_lvl1.visible = true
 	end if
 	
 	if upperbound( lm_menu_lvl1.item) > 0 then
@@ -56,6 +57,7 @@ do while upperbound( am_main.item) >= li_level_1
 			if not f_check_menu( as_user_id, ls_menu_id) &
 				and lm_menu_lvl2.tag <> "1" then
 				lm_menu_lvl2.enabled = false
+					
 			end if
 			
 			if upperbound( lm_menu_lvl2.item)>0 then

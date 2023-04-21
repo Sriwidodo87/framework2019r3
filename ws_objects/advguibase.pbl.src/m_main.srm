@@ -1,0 +1,1232 @@
+﻿$PBExportHeader$m_main.srm
+forward
+global type m_main from menu
+end type
+type m_admmain from menu within m_main
+end type
+type m_changepassword0 from menu within m_admmain
+end type
+type m_admuser from menu within m_admmain
+end type
+type m_admgroup from menu within m_admmain
+end type
+type m_admmenu from menu within m_admmain
+end type
+type m_admmain from menu within m_main
+m_changepassword0 m_changepassword0
+m_admuser m_admuser
+m_admgroup m_admgroup
+m_admmenu m_admmenu
+end type
+type m_hotmain from menu within m_main
+end type
+type m_hotadd from menu within m_hotmain
+end type
+type m_hotedit from menu within m_hotmain
+end type
+type m_hotquery from menu within m_hotmain
+end type
+type m_hotdelete from menu within m_hotmain
+end type
+type m_hottop from menu within m_hotmain
+end type
+type m_hotprev from menu within m_hotmain
+end type
+type m_hotnext from menu within m_hotmain
+end type
+type m_hotlast from menu within m_hotmain
+end type
+type m_hotprint from menu within m_hotmain
+end type
+type m_hotclose from menu within m_hotmain
+end type
+type m_hotcustom01 from menu within m_hotmain
+end type
+type m_hotcustom02 from menu within m_hotmain
+end type
+type m_hotcustom03 from menu within m_hotmain
+end type
+type m_hotmain from menu within m_main
+m_hotadd m_hotadd
+m_hotedit m_hotedit
+m_hotquery m_hotquery
+m_hotdelete m_hotdelete
+m_hottop m_hottop
+m_hotprev m_hotprev
+m_hotnext m_hotnext
+m_hotlast m_hotlast
+m_hotprint m_hotprint
+m_hotclose m_hotclose
+m_hotcustom01 m_hotcustom01
+m_hotcustom02 m_hotcustom02
+m_hotcustom03 m_hotcustom03
+end type
+type m_winmain from menu within m_main
+end type
+type m_winlayer from menu within m_winmain
+end type
+type m_wincascade from menu within m_winmain
+end type
+type m_tile from menu within m_winmain
+end type
+type m_horizontal from menu within m_winmain
+end type
+type m_winmain from menu within m_main
+m_winlayer m_winlayer
+m_wincascade m_wincascade
+m_tile m_tile
+m_horizontal m_horizontal
+end type
+type m_sysmain from menu within m_main
+end type
+type m_printersetup from menu within m_sysmain
+end type
+type m_sysexit from menu within m_sysmain
+end type
+type m_sysmain from menu within m_main
+m_printersetup m_printersetup
+m_sysexit m_sysexit
+end type
+global type m_main from menu
+m_admmain m_admmain
+m_hotmain m_hotmain
+m_winmain m_winmain
+m_sysmain m_sysmain
+end type
+end forward
+
+global type m_main from menu
+m_admmain m_admmain
+m_hotmain m_hotmain
+m_winmain m_winmain
+m_sysmain m_sysmain
+end type
+global m_main m_main
+
+on m_main.create
+m_main=this
+call super::create
+this.text = "m_main"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.fontcharset = ansi!
+this.fontpitch = variable!
+this.fontfamily = swiss!
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_admmain=create m_admmain
+this.m_hotmain=create m_hotmain
+this.m_winmain=create m_winmain
+this.m_sysmain=create m_sysmain
+this.Item[UpperBound(this.Item)+1]=this.m_admmain
+this.Item[UpperBound(this.Item)+1]=this.m_hotmain
+this.Item[UpperBound(this.Item)+1]=this.m_winmain
+this.Item[UpperBound(this.Item)+1]=this.m_sysmain
+end on
+
+on m_main.destroy
+call super::destroy
+destroy(this.m_admmain)
+destroy(this.m_hotmain)
+destroy(this.m_winmain)
+destroy(this.m_sysmain)
+end on
+
+type m_admmain from menu within m_main
+m_changepassword0 m_changepassword0
+m_admuser m_admuser
+m_admgroup m_admgroup
+m_admmenu m_admmenu
+end type
+
+on m_admmain.create
+call super::create
+this.text = "&Administrator"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_changepassword0=create m_changepassword0
+this.m_admuser=create m_admuser
+this.m_admgroup=create m_admgroup
+this.m_admmenu=create m_admmenu
+this.Item[UpperBound(this.Item)+1]=this.m_changepassword0
+this.Item[UpperBound(this.Item)+1]=this.m_admuser
+this.Item[UpperBound(this.Item)+1]=this.m_admgroup
+this.Item[UpperBound(this.Item)+1]=this.m_admmenu
+end on
+
+on m_admmain.destroy
+call super::destroy
+destroy(this.m_changepassword0)
+destroy(this.m_admuser)
+destroy(this.m_admgroup)
+destroy(this.m_admmenu)
+end on
+
+type m_changepassword0 from menu within m_admmain
+end type
+
+event clicked;open(w_change_password,parentwindow)
+end event
+
+on m_changepassword0.create
+call super::create
+this.text = "Change Password"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_changepassword0.destroy
+call super::destroy
+end on
+
+type m_admuser from menu within m_admmain
+end type
+
+on m_admuser.create
+call super::create
+this.tag = "m_admuser"
+this.text = "&User Maintenace"
+this.toolbaritemname = "..\res\useraccounts.jpg"
+this.toolbaritemspace = 3
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_admuser.destroy
+call super::destroy
+end on
+
+event clicked;//opensheet(w_sysuser,parentwindow,0,original!)
+IF IsValid(w_sysuser) THEN
+					w_main.uo_PowerDock.of_ActivateDocument(w_sysuser)
+				ELSE
+					//uo_PowerDock.of_OpenDocument(iuo_18, ls_label,'CommandButton!')
+					w_main.uo_PowerDock.of_OpenDocument(w_sysuser,"User Group", 'Window!' )
+					//uo_PowerDock.of_OpenDocument(iw_windowtest, "My Window", 'Window!')
+					
+				END IF
+
+end event
+
+type m_admgroup from menu within m_admmain
+end type
+
+on m_admgroup.create
+call super::create
+this.text = "&Group Maintenace"
+this.toolbaritemname = "..\res\securitygroups.png"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_admgroup.destroy
+call super::destroy
+end on
+
+event clicked;//opensheet(w_sysgroup,parentwindow,0,original!)
+IF IsValid(w_sysgroup) THEN
+					w_main.uo_PowerDock.of_ActivateDocument(w_sysgroup)
+				ELSE
+					w_main.uo_PowerDock.of_OpenDocument(w_sysgroup,"Group Maintenance", 'Window!' )					
+				END IF
+
+end event
+
+type m_admmenu from menu within m_admmain
+end type
+
+on m_admmenu.create
+call super::create
+this.text = "U&pdate Menu"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_admmenu.destroy
+call super::destroy
+end on
+
+event clicked;f_update_menu(m_main)
+end event
+
+type m_hotmain from menu within m_main
+m_hotadd m_hotadd
+m_hotedit m_hotedit
+m_hotquery m_hotquery
+m_hotdelete m_hotdelete
+m_hottop m_hottop
+m_hotprev m_hotprev
+m_hotnext m_hotnext
+m_hotlast m_hotlast
+m_hotprint m_hotprint
+m_hotclose m_hotclose
+m_hotcustom01 m_hotcustom01
+m_hotcustom02 m_hotcustom02
+m_hotcustom03 m_hotcustom03
+event create ( )
+event destroy ( )
+end type
+
+on m_hotmain.create
+call super::create
+this.visible = false
+this.text = "System Shortcut"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_hotadd=create m_hotadd
+this.m_hotedit=create m_hotedit
+this.m_hotquery=create m_hotquery
+this.m_hotdelete=create m_hotdelete
+this.m_hottop=create m_hottop
+this.m_hotprev=create m_hotprev
+this.m_hotnext=create m_hotnext
+this.m_hotlast=create m_hotlast
+this.m_hotprint=create m_hotprint
+this.m_hotclose=create m_hotclose
+this.m_hotcustom01=create m_hotcustom01
+this.m_hotcustom02=create m_hotcustom02
+this.m_hotcustom03=create m_hotcustom03
+this.Item[UpperBound(this.Item)+1]=this.m_hotadd
+this.Item[UpperBound(this.Item)+1]=this.m_hotedit
+this.Item[UpperBound(this.Item)+1]=this.m_hotquery
+this.Item[UpperBound(this.Item)+1]=this.m_hotdelete
+this.Item[UpperBound(this.Item)+1]=this.m_hottop
+this.Item[UpperBound(this.Item)+1]=this.m_hotprev
+this.Item[UpperBound(this.Item)+1]=this.m_hotnext
+this.Item[UpperBound(this.Item)+1]=this.m_hotlast
+this.Item[UpperBound(this.Item)+1]=this.m_hotprint
+this.Item[UpperBound(this.Item)+1]=this.m_hotclose
+this.Item[UpperBound(this.Item)+1]=this.m_hotcustom01
+this.Item[UpperBound(this.Item)+1]=this.m_hotcustom02
+this.Item[UpperBound(this.Item)+1]=this.m_hotcustom03
+end on
+
+on m_hotmain.destroy
+call super::destroy
+destroy(this.m_hotadd)
+destroy(this.m_hotedit)
+destroy(this.m_hotquery)
+destroy(this.m_hotdelete)
+destroy(this.m_hottop)
+destroy(this.m_hotprev)
+destroy(this.m_hotnext)
+destroy(this.m_hotlast)
+destroy(this.m_hotprint)
+destroy(this.m_hotclose)
+destroy(this.m_hotcustom01)
+destroy(this.m_hotcustom02)
+destroy(this.m_hotcustom03)
+end on
+
+type m_hotadd from menu within m_hotmain
+event create ( )
+event destroy ( )
+end type
+
+on m_hotadd.create
+call super::create
+this.text = "Add / Cancel ~tF1"
+this.shortcut = 112
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_hotadd.destroy
+call super::destroy
+end on
+
+event clicked;window	lw_activesheet
+
+lw_activesheet =w_main.getactivesheet()
+
+if isvalid( lw_activesheet) then
+	lw_activesheet.triggerevent( "ue_add_cancel")
+end if
+end event
+
+type m_hotedit from menu within m_hotmain
+event create ( )
+event destroy ( )
+end type
+
+on m_hotedit.create
+call super::create
+this.text = "Edit / Save~tF4"
+this.shortcut = 115
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_hotedit.destroy
+call super::destroy
+end on
+
+event clicked;window	lw_activesheet
+
+lw_activesheet =w_main.getactivesheet()
+
+if isvalid( lw_activesheet) then
+	lw_activesheet.triggerevent( "ue_edit_save")
+end if
+end event
+
+type m_hotquery from menu within m_hotmain
+event create ( )
+event destroy ( )
+end type
+
+on m_hotquery.create
+call super::create
+this.text = "Query/Display~tF2"
+this.shortcut = 113
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_hotquery.destroy
+call super::destroy
+end on
+
+event clicked;window	lw_activesheet
+
+lw_activesheet =w_main.getactivesheet()
+
+if isvalid( lw_activesheet) then
+	lw_activesheet.triggerevent( "ue_query_display")
+end if
+end event
+
+type m_hotdelete from menu within m_hotmain
+event create ( )
+event destroy ( )
+end type
+
+on m_hotdelete.create
+call super::create
+this.text = "Delete~tF3"
+this.shortcut = 114
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_hotdelete.destroy
+call super::destroy
+end on
+
+event clicked;window	lw_activesheet
+
+lw_activesheet =w_main.getactivesheet()
+
+if isvalid( lw_activesheet) then
+	lw_activesheet.triggerevent( "ue_delete")
+end if
+end event
+
+type m_hottop from menu within m_hotmain
+event create ( )
+event destroy ( )
+end type
+
+on m_hottop.create
+call super::create
+this.text = "Top~tF5"
+this.shortcut = 116
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_hottop.destroy
+call super::destroy
+end on
+
+event clicked;window	lw_activesheet
+
+lw_activesheet =w_main.getactivesheet()
+
+if isvalid( lw_activesheet) then
+	lw_activesheet.triggerevent( "ue_first")
+end if
+end event
+
+type m_hotprev from menu within m_hotmain
+event create ( )
+event destroy ( )
+end type
+
+on m_hotprev.create
+call super::create
+this.text = "Prev~tF6"
+this.shortcut = 117
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_hotprev.destroy
+call super::destroy
+end on
+
+event clicked;window	lw_activesheet
+
+lw_activesheet =w_main.getactivesheet()
+
+if isvalid( lw_activesheet) then
+	lw_activesheet.triggerevent( "ue_prev")
+end if
+end event
+
+type m_hotnext from menu within m_hotmain
+event create ( )
+event destroy ( )
+end type
+
+on m_hotnext.create
+call super::create
+this.text = "Next~tF7"
+this.shortcut = 118
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_hotnext.destroy
+call super::destroy
+end on
+
+event clicked;window	lw_activesheet
+
+lw_activesheet =w_main.getactivesheet()
+
+if isvalid( lw_activesheet) then
+	lw_activesheet.triggerevent( "ue_next")
+end if
+end event
+
+type m_hotlast from menu within m_hotmain
+event create ( )
+event destroy ( )
+end type
+
+on m_hotlast.create
+call super::create
+this.text = "Last~tF8"
+this.shortcut = 119
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_hotlast.destroy
+call super::destroy
+end on
+
+event clicked;window	lw_activesheet
+
+lw_activesheet =w_main.getactivesheet()
+
+if isvalid( lw_activesheet) then
+	lw_activesheet.triggerevent( "ue_last")
+end if
+end event
+
+type m_hotprint from menu within m_hotmain
+event create ( )
+event destroy ( )
+end type
+
+on m_hotprint.create
+call super::create
+this.text = "Print~tF11"
+this.shortcut = 122
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_hotprint.destroy
+call super::destroy
+end on
+
+event clicked;window	lw_activesheet
+
+lw_activesheet =w_main.getactivesheet()
+
+if isvalid( lw_activesheet) then
+	lw_activesheet.triggerevent( "ue_print")
+end if
+end event
+
+type m_hotclose from menu within m_hotmain
+event create ( )
+event destroy ( )
+end type
+
+on m_hotclose.create
+call super::create
+this.text = "Close~tF12"
+this.shortcut = 123
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_hotclose.destroy
+call super::destroy
+end on
+
+event clicked;window	lw_activesheet
+
+lw_activesheet =w_main.getactivesheet()
+
+if isvalid( lw_activesheet) then
+	lw_activesheet.triggerevent( "ue_close")
+end if
+end event
+
+type m_hotcustom01 from menu within m_hotmain
+event create ( )
+event destroy ( )
+end type
+
+on m_hotcustom01.create
+call super::create
+this.text = "custom01~tF9"
+this.shortcut = 120
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_hotcustom01.destroy
+call super::destroy
+end on
+
+event clicked;window	lw_activesheet
+
+lw_activesheet =w_main.getactivesheet()
+
+if isvalid( lw_activesheet) then
+	lw_activesheet.triggerevent( "ue_custom01")
+end if
+end event
+
+type m_hotcustom02 from menu within m_hotmain
+event create ( )
+event destroy ( )
+end type
+
+on m_hotcustom02.create
+call super::create
+this.text = "custom02~tF10"
+this.shortcut = 121
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_hotcustom02.destroy
+call super::destroy
+end on
+
+event clicked;window	lw_activesheet
+
+lw_activesheet =w_main.getactivesheet()
+
+if isvalid( lw_activesheet) then
+	lw_activesheet.triggerevent( "ue_custom02")
+end if
+end event
+
+type m_hotcustom03 from menu within m_hotmain
+event create ( )
+event destroy ( )
+end type
+
+on m_hotcustom03.create
+call super::create
+this.text = "custom03~tShift+F2"
+this.shortcut = 1137
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_hotcustom03.destroy
+call super::destroy
+end on
+
+event clicked;window	lw_activesheet
+
+lw_activesheet =w_main.getactivesheet()
+
+if isvalid( lw_activesheet) then
+	lw_activesheet.triggerevent( "ue_custom03")
+end if
+end event
+
+type m_winmain from menu within m_main
+m_winlayer m_winlayer
+m_wincascade m_wincascade
+m_tile m_tile
+m_horizontal m_horizontal
+end type
+
+on m_winmain.create
+call super::create
+this.text = "&Window"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_winlayer=create m_winlayer
+this.m_wincascade=create m_wincascade
+this.m_tile=create m_tile
+this.m_horizontal=create m_horizontal
+this.Item[UpperBound(this.Item)+1]=this.m_winlayer
+this.Item[UpperBound(this.Item)+1]=this.m_wincascade
+this.Item[UpperBound(this.Item)+1]=this.m_tile
+this.Item[UpperBound(this.Item)+1]=this.m_horizontal
+end on
+
+on m_winmain.destroy
+call super::destroy
+destroy(this.m_winlayer)
+destroy(this.m_wincascade)
+destroy(this.m_tile)
+destroy(this.m_horizontal)
+end on
+
+type m_winlayer from menu within m_winmain
+end type
+
+on m_winlayer.create
+call super::create
+this.text = "&Layer"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_winlayer.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.arrangesheets(layer!)
+end event
+
+type m_wincascade from menu within m_winmain
+end type
+
+on m_wincascade.create
+call super::create
+this.text = "&Cascade"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_wincascade.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.arrangesheets(cascade!)
+end event
+
+type m_tile from menu within m_winmain
+end type
+
+on m_tile.create
+call super::create
+this.text = "&Tile &Vertical"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.arrangesheets(Tile!)
+end event
+
+type m_horizontal from menu within m_winmain
+end type
+
+on m_horizontal.create
+call super::create
+this.text = "&Tile &Horizontal"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_horizontal.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.arrangesheets(TileHorizontal!)
+end event
+
+type m_sysmain from menu within m_main
+m_printersetup m_printersetup
+m_sysexit m_sysexit
+end type
+
+on m_sysmain.create
+call super::create
+this.text = "&System"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_printersetup=create m_printersetup
+this.m_sysexit=create m_sysexit
+this.Item[UpperBound(this.Item)+1]=this.m_printersetup
+this.Item[UpperBound(this.Item)+1]=this.m_sysexit
+end on
+
+on m_sysmain.destroy
+call super::destroy
+destroy(this.m_printersetup)
+destroy(this.m_sysexit)
+end on
+
+type m_printersetup from menu within m_sysmain
+end type
+
+on m_printersetup.create
+call super::create
+this.text = "&Printer Setup"
+this.toolbaritemname = "..\res\printbig.png"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_printersetup.destroy
+call super::destroy
+end on
+
+event clicked;printsetup()
+end event
+
+type m_sysexit from menu within m_sysmain
+end type
+
+event clicked;parentwindow.postevent("ue_exit")
+end event
+
+on m_sysexit.create
+call super::create
+this.text = "E&xit"
+this.toolbaritemname = "..\res\signout.png"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 16711680
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217857
+this.textsize = -8
+this.weight = 400
+this.facename = "Arial"
+this.titlebackcolor = 134217752
+this.bitmapbackcolor = 134217730
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217752
+this.toolbarbackcolor = 134217752
+this.toolbarhighlightcolor = 134217752
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_sysexit.destroy
+call super::destroy
+end on
+

@@ -247,7 +247,8 @@ if is_mode = "display" then
 	li_close_conf= messagebox( "Close " + this.title, "Are you sure?", &
 		exclamation!,yesno!)
 	if li_close_conf = 1 then
-		close( this)
+		//close( this)
+			w_main.uo_powerDock.of_closeactivedocument()
 	end if
 end if
 end event
@@ -636,9 +637,9 @@ type page1 from userobject within tab1
 event create ( )
 event destroy ( )
 integer x = 18
-integer y = 100
+integer y = 116
 integer width = 2862
-integer height = 1816
+integer height = 1800
 long backcolor = 67108864
 string text = "Master"
 long tabtextcolor = 33554432
@@ -709,9 +710,9 @@ type page2 from userobject within tab1
 event create ( )
 event destroy ( )
 integer x = 18
-integer y = 100
+integer y = 116
 integer width = 2862
-integer height = 1816
+integer height = 1800
 long backcolor = 67108864
 string text = "Detail"
 long tabtextcolor = 33554432
@@ -806,9 +807,9 @@ type page3 from userobject within tab1
 event create ( )
 event destroy ( )
 integer x = 18
-integer y = 100
+integer y = 116
 integer width = 2862
-integer height = 1816
+integer height = 1800
 long backcolor = 67108864
 string text = "GL"
 long tabtextcolor = 33554432
